@@ -1,4 +1,4 @@
-🐾 Pawsitive - AI-Powered Pet E-Commerce Website
+#🐾 Pawsitive - AI-Powered Pet E-Commerce Website
 
 Welcome to Pawsitive, an AI-powered e-commerce platform designed to make pet shopping easier and more convenient. This project was built during a hackathon as a beginner-friendly solution for pet owners looking for the best products for their furry friends. 🐶🐱🐾
 
