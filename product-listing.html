@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fudge - Product Listing</title>
+    <meta name="title" content="Fudge - Product Listing" />
+    <meta
+      name="description"
+      content="Browse our wide selection of pet products"
+    />
+
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <link rel="stylesheet" href="./assets/css/productlisting.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Nunito+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+        /* Replace the existing header styles with these */
+        .header {
+            background-color: var(--portland-orange) !important;
+            position: static; /* Changed from fixed to static */
+            width: 100%;
+            padding-block: 20px;
+            z-index: 4;
+        }
+
+        /* Add margin to main content to prevent overlap */
+        main {
+            margin-top: 0; /* Remove any existing top margin */
+        }
+
+        /* Rest of your existing styles remain unchanged */
+        .header.active {
+            background-color: var(--portland-orange) !important;
+        }
+
+        .navbar-link {
+            color: var(--white) !important;
+        }
+
+        .navbar-link:hover {
+            color: var(--eerie-black-1) !important;
+        }
+
+        .logo {
+            color: var(--white) !important;
+        }
+
+        .action-btn {
+            color: var(--white) !important;
+        }
+
+        .action-btn:hover {
+            color: var(--eerie-black-1) !important;
+        }
+
+        .navbar-action-btn {
+            color: var(--white) !important;
+            border: 1px solid var(--white) !important;
+        }
+
+        .navbar-action-btn:hover {
+            background-color: var(--white) !important;
+            color: var(--portland-orange) !important;
+        }
+    </style>
+  </head>
+
+  <body id="top">
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+      <div class="container">
+        <button
+          class="nav-toggle-btn"
+          aria-label="toggle menu"
+          data-nav-toggler
+        >
+          <ion-icon
+            name="menu-outline"
+            aria-hidden="true"
+            class="menu-icon"
+          ></ion-icon>
+          <ion-icon
+            name="close-outline"
+            aria-label="true"
+            class="close-icon"
+          ></ion-icon>
+        </button>
+
+        <a href="index.html" class="logo">Fudge</a>
+
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="index.html" class="navbar-link" data-nav-link>Home</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="product-listing.html" class="navbar-link" data-nav-link
+                >Shop</a
+              >
+            </li>
+
+            <li class="navbar-item">
+              <a href="adopt.php" class="navbar-link" data-nav-link>Adopt me</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link" data-nav-link>Blogs</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link" data-nav-link>Contact</a>
+            </li>
+          </ul>
+
+          <a href="#" class="navbar-action-btn">Log In</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="action-btn" aria-label="Search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <button class="action-btn user" aria-label="User">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <button
+            onclick="window.location.href = 'cart.html'"
+            class="action-btn"
+            aria-label="cart"
+          >
+            <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+            <span class="btn-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <!-- 
+        - #PRODUCT LISTING
+      -->
+
+        <section class="section product product-listing" aria-label="product">
+          <div class="container">
+            <h2 class="h2 section-title">
+              <span class="span">Our</span> Products
+            </h2>
+
+            <ul class="grid-list">
+              <!-- Replace existing product items with new ones -->
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/cchunks.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Chicken Chunks"
+                      class="img-cover default"
+                    />
+                    <img onclick="window.location.href='order.html'"
+                      src="./assets/images/cchunks1.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Chicken Chunks"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(1)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Chicken Chunks In Gravy</a>
+                    </h3>
+                    <data class="card-price" value="5,472">₹5,472</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/drools1.webp"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Drools"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/drools2.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Drools"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Drools Dog Dry Food</a>
+                    </h3>
+                    <data class="card-price" value="2,635">₹2,635</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/krta1.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Kurta"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/krta2.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Kurta"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title"
+                        >Skatrs Brocade Gold Printed Kurta for Dogs and Cats
+                        (Blue)</a
+                      >
+                    </h3>
+                    <data class="card-price" value="899">₹899</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/raincoat1.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Raincoat"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/raincoat2.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Raincoat"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title"
+                        >Skatrs Full Coverage Cape Style Raincoat for Dogs and
+                        Cats (Yellow)</a
+                      >
+                    </h3>
+                    <data class="card-price" value="399">₹399</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/product-5.jpg"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Toy"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/product-5_0.jpg"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Dog Toy"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Orange Toy For Pets</a>
+                    </h3>
+                    <data class="card-price" value="1300">₹1300</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/chews1.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Chew"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/chews2.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Chew"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title"
+                        >GiGwi Duraspikes Extra Durable Elephant Toy for Dogs
+                        (Light Blue) | For Medium Chewers</a
+                      >
+                    </h3>
+                    <data class="card-price" value="1697">₹1,697</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/fishc1.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Fish Chunks"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/fishc2.png"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Fish Chunks"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title"
+                        >Kennel Kitchen Fish Chunks in Gravy Kitten and Adult
+                        Cat Wet Food (All Life Stage)</a
+                      >
+                    </h3>
+                    <data class="card-price" value="2580">₹2,850</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="product-card">
+                  <div
+                    class="card-banner img-holder"
+                    style="--width: 360; --height: 360"
+                  >
+                    <img
+                      src="./assets/images/product-8.jpg"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Etiam commodo leo sed"
+                      class="img-cover default"
+                    />
+                    <img
+                      src="./assets/images/product-8_0.jpg"
+                      width="360"
+                      height="360"
+                      loading="lazy"
+                      alt="Etiam commodo leo sed"
+                      class="img-cover hover"
+                    />
+                    <button
+                      class="card-action-btn"
+                      aria-label="add to cart"
+                      title="Add To Cart"
+                      onclick="addToCartAndRedirect(this)"
+                    >
+                      <ion-icon
+                        name="bag-add-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
+                    </button>
+                  </div>
+                  <div class="card-content">
+                    <div class="wrapper">
+                      <div class="rating-wrapper gray">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <span class="span">(0)</span>
+                    </div>
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Etiam commodo leo sed</a>
+                    </h3>
+                    <data class="card-price" value="55">$55.00</data>
+                    <!-- Small cart button removed -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="product-filters">
+              <select name="sort" id="sort">
+                <option value="default">Sort by</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="price-high-low">Price: High to Low</option>
+                <option value="name-a-z">Name: A to Z</option>
+                <option value="name-z-a">Name: Z to A</option>
+              </select>
+              <!-- Add more filter options as needed -->
+            </div>
+
+            <div class="pagination">
+              <button class="pagination-btn active">1</button>
+              <button class="pagination-btn">2</button>
+              <button class="pagination-btn">3</button>
+              <button class="pagination-btn">Next</button>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- 
+    - #FOOTER
+  -->
+
+    <footer
+      class="footer"
+      style="background-image: url('./assets/images/footer-bg.jpg')"
+    >
+      <!-- Footer content (same as in index.html) -->
+    </footer>
+
+    <!-- 
+    - #BACK TO TOP
+  -->
+
+    <a
+      href="#top"
+      class="back-top-btn"
+      aria-label="back to top"
+      data-back-top-btn
+    >
+      <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js" defer></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script>
+      // Function to add item to cart and redirect
+      function addToCartAndRedirect(button) {
+        const productCard = button.closest(".product-card");
+        const product = {
+          name: productCard.querySelector(".card-title").textContent,
+          price: productCard.querySelector(".card-price").getAttribute("value"),
+          image: productCard.querySelector(".img-cover.default").src,
+        };
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Redirect to cart page
+        window.location.href = "cart.html";
+      }
+
+      // Update cart count on page load
+      function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.querySelector(".btn-badge").textContent = cart.length;
+      }
+
+      // Call updateCartCount on page load
+      window.onload = updateCartCount;
+    </script>
+  </body>
+</html>

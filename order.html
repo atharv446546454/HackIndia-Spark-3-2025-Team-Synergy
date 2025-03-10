@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Store</title>
+    <style>
+      body {
+        font-family: "Noto Sans JP", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #fffaf0;
+      }
+      .product {
+        border: 2px solid #ffa07a;
+        padding: 20px;
+        max-width: 800px;
+        width: 90%;
+        text-align: center;
+        background-color: #fff5e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        overflow-y: auto;
+        max-height: 90vh;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #ff7f50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #e0897a;
+      }
+      .product-description {
+        text-align: left;
+        margin-top: 20px;
+      }
+      .options {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .options h4 {
+        margin-bottom: 10px;
+      }
+      .options button {
+        margin: 5px;
+      }
+      .delivery-info {
+        margin-top: 20px;
+        text-align: left;
+      }
+      .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      #back-button {
+        margin-top: 20px;
+        background-color: #ff7f50;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      #back-button:hover {
+        background-color: #e0897a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="product">
+      <h2>Kennel Kitchen Chicken Chunks in Gravy</h2>
+      <img src="./assets/images/cchunks.png" alt="Pet Food" />
+      <p>5.0 (4)</p>
+      <p>#Dog Wet Food #Kennel Kitchen</p>
+      <p>
+        <strong id="base-price">₹5,472</strong>
+        <span id="original-price" style="text-decoration: line-through"
+          >₹5,760</span
+        >
+        Save <span id="discount">5%</span> (₹43/100g)
+      </p>
+      <p>(*Incl. of all taxes)</p>
+      <div class="delivery-info">
+        <p>Delivery: Sat, 2nd Nov</p>
+        <p>400017, Mumbai <button>Edit</button></p>
+        <p>The final delivery date will depend on the items in the cart.</p>
+      </div>
+      <div class="options">
+        <h4>Size</h4>
+        <button data-price="1.0">96x130g Best offer</button>
+        <button data-price="0.5">15x80g</button>
+        <button data-price="0.9">24x130g</button>
+        <button data-price="0.7">30x80g</button>
+        <button data-price="1.5">45x80g</button>
+        <button data-price="2.0">48x130g</button>
+      </div>
+      <label for="quantity">Select Quantity:</label>
+      <select id="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <p id="total-price">Total Price: ₹5,472</p>
+      <div class="action-buttons">
+        <button id="add-to-cart-button">Add to Cart</button>
+        <button id="buy-button">Buy Now</button>
+      </div>
+      <!-- Detailed Product Description -->
+      <div class="product-description">
+        <h3>Product Description</h3>
+        <p>
+          Kennel Kitchen Chicken Chunks in Gravy is made with 100% natural
+          chicken meat. Tasty, gravy covered chicken chunks made with the
+          perfect balance of protein to fat ratio to maintain lean and strong
+          bodies.
+        </p>
+        <h4>Key Features:</h4>
+        <ul>
+          <li>Suitable for all ages, breeds and sizes. Puppy and Adult</li>
+          <li>
+            Recipe made with Regionally sourced premium quality deboned chicken
+            and chicken liver
+          </li>
+          <li>Preservative Free</li>
+          <li>Free from Artificial Flavours and colours</li>
+          <li>High in natural omega 3 and 6 fatty acids.</li>
+        </ul>
+        <h4>Ingredients:</h4>
+        <p>
+          Chicken by-products, Chicken, Cereals, Minerals, Gravy, Soybean Oil,
+          Vegetable Protein Extract, Amino Acids, Omega 3 & 6 Fatty Acids,
+          Vitamin A, Vitamin D3, Vitamin E, Vitamin K, Vitamin B1, Riboflavin,
+          Vitamin B6, Vitamin B12, Niacin, Calcium Pantothenate, Folic Acid,
+          Biotin, Choline Chloride, Iodine as Calcium Iodate Anhydrous, Selenium
+          as Sodium Selenite, Zinc as Zinc Sulphate Monohydrate, Manganese as
+          Manganous Sulphate Monohydrate.
+        </p>
+        <h4>Nutritional Information:</h4>
+        <p>
+          Crude Protein = 7%, Crude Fat = 5%, Crude Fiber = 0.5%, Moisture =
+          82.09%. Calorie content: 90 Kcal/100g
+        </p>
+      </div>
+      <button id="back-button">Back</button>
+    </div>
+
+    <script>
+      // JavaScript for countdown timer (optional)
+      function startTimer(duration, display) {
+        let timer = duration,
+          hours,
+          minutes,
+          seconds;
+        setInterval(function () {
+          hours = parseInt(timer / 3600, 10);
+          minutes = parseInt((timer % 3600) / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          hours = hours < 10 ? "0" + hours : hours;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = hours + "h " + minutes + "m " + seconds + "s";
+
+          if (--timer < 0) {
+            timer = duration;
+          }
+        }, 1000);
+      }
+
+      window.onload = function () {
+        const dealDuration = 12 * 3600 + 39 * 60 + 45; // 12 hours, 39 minutes, 45 seconds
+        const display = document.querySelector("#deal-timer");
+        startTimer(dealDuration, display);
+      };
+
+      // JavaScript for product counter
+      const quantitySelect = document.getElementById("quantity");
+      const totalPrice = document.getElementById("total-price");
+      const buyButton = document.getElementById("buy-button");
+      const sizeButtons = document.querySelectorAll(".options button");
+
+      let basePrice = 5472; // Base price per unit in INR
+      let originalPrice = 5760; // Original price before discount
+      let pricePerUnit = basePrice; // Base price per unit in INR
+
+      sizeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const sizeMultiplier = parseFloat(this.getAttribute("data-price"));
+          pricePerUnit = basePrice * sizeMultiplier;
+          const newOriginalPrice = originalPrice * sizeMultiplier;
+          const discountPercentage =
+            ((newOriginalPrice - pricePerUnit) / newOriginalPrice) * 100;
+
+          document.getElementById(
+            "base-price"
+          ).textContent = `₹${pricePerUnit.toFixed(0)}`;
+          document.getElementById(
+            "original-price"
+          ).textContent = `₹${newOriginalPrice.toFixed(0)}`;
+          document.getElementById(
+            "discount"
+          ).textContent = `${discountPercentage.toFixed(0)}%`;
+
+          updateTotalPrice();
+        });
+      });
+
+      quantitySelect.addEventListener("change", updateTotalPrice);
+
+      function updateTotalPrice() {
+        const quantity = parseInt(quantitySelect.value);
+        const total = quantity * pricePerUnit;
+        totalPrice.textContent = `Total Price: ₹${total}`;
+      }
+
+      buyButton.addEventListener("click", function () {
+        const quantity = parseInt(quantitySelect.value);
+        if (quantity > 0) {
+          alert("Order Successful!");
+        } else {
+          alert("Please select a quantity.");
+        }
+      });
+
+      document
+        .getElementById("back-button")
+        .addEventListener("click", function () {
+          window.history.back();
+        });
+
+      document
+        .getElementById("add-to-cart-button")
+        .addEventListener("click", function () {
+          const quantity = parseInt(quantitySelect.value);
+          if (quantity > 0) {
+            const product = {
+              name: document.querySelector(".product h2").textContent,
+              price: document.getElementById("base-price").textContent,
+              image: document.querySelector(".product img").src,
+              quantity: quantity,
+            };
+            addToCart(product);
+          } else {
+            alert("Please select a quantity.");
+          }
+        });
+
+      // Function to add item to cart
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Product added to cart!");
+      }
+
+      // Example usage
+      document.querySelectorAll(".card-action-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const product = {
+            name: button.closest(".product-card").querySelector(".card-title")
+              .textContent,
+            price: button
+              .closest(".product-card")
+              .querySelector(".card-price")
+              .getAttribute("value"),
+            image: button
+              .closest(".product-card")
+              .querySelector(".img-cover.default").src,
+          };
+          addToCart(product);
+        });
+      });
+    </script>
+  </body>
+</html>

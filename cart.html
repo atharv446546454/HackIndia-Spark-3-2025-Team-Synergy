@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .savings {
+        background: linear-gradient(
+          135deg,
+          #ff6b4a,
+          #ff8066
+        ); /* New gradient using the specified orange */
+        color: white;
+        padding: 16px 24px;
+        border-radius: 16px;
+        margin: 0 auto 20px;
+        font-weight: 500;
+        max-width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 12px rgba(255, 107, 74, 0.2); /* Updated shadow color */
+      }
+
+      .savings span {
+        font-size: 1.2em;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: 8px;
+        margin-left: 10px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 10px 0;
+      }
+
+      nav ul li {
+        position: relative;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      nav ul li:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -30px;
+        color: #666;
+      }
+
+      .delivery-info,
+      .cart-items,
+      .price-details {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 24px;
+        margin: 20px auto;
+        max-width: 1000px;
+      }
+
+      .cart-items .item {
+        background: #f5f5f7; /* Apple's light gray */
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .cart-items .item:hover {
+        transform: translateY(-2px);
+      }
+
+      .cart-items img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .cart-items .details {
+        flex-grow: 1;
+      }
+
+      .cart-items .remove-btn {
+        background-color: #ff3b30; /* Apple's red */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .cart-items .remove-btn:hover {
+        background-color: #ff453a;
+      }
+
+      .price-details {
+        background: #f8f9fa;
+      }
+
+      .price-details p {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        padding: 5px 0;
+      }
+
+      button {
+        background-color: #ff6b4a; /* Updated primary orange */
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: none;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #ff8066; /* Lighter shade for hover */
+        transform: scale(1.02);
+      }
+
+      .cart-item {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+      }
+
+      .cart-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      #checkout-btn {
+        width: 100%;
+        margin-top: 20px;
+        font-size: 1.1em;
+        background-color: #ff6b4a; /* Updated primary orange */
+      }
+
+      #checkout-btn:hover {
+        background-color: #ff8066; /* Lighter shade for hover */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="savings">
+        <div>Your Total Savings</div>
+        <span>₹<span id="total-savings">0</span></span>
+      </div>
+      <nav>
+        <ul>
+          <li>Cart</li>
+          <li>Address</li>
+          <li>Payment</li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="delivery-info">
+      <p>Deliver To 400017 MUMBAI</p>
+      <button>CHECK</button>
+    </section>
+
+    <section class="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </section>
+
+    <section class="price-details">
+      <p>Total MRP: ₹<span id="total-mrp">0</span></p>
+      <p>Discount On MRP: -₹<span id="discount">0</span></p>
+      <p>Delivery Fee: ₹49</p>
+      <p>Total Amount: ₹<span id="total-amount">0</span></p>
+      <p>Points Earned: <span id="points-earned">0</span></p>
+      <button id="checkout-btn">Checkout</button>
+    </section>
+
+    <script>
+      // Function to display cart items
+      function displayCartItems() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.querySelector(".cart-items");
+
+        cartItemsContainer.innerHTML = ""; // Clear existing items
+
+        cart.forEach((item, index) => {
+          const itemElement = document.createElement("div");
+          itemElement.classList.add("item");
+          itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <div class="details">
+              <h3>${item.name}</h3>
+              <p>Price: ₹${item.price}</p>
+            </div>
+            <button class="remove-btn" data-index="${index}">Remove</button>
+          `;
+          cartItemsContainer.appendChild(itemElement);
+        });
+
+        // Add event listeners for remove buttons
+        document.querySelectorAll(".remove-btn").forEach((button) => {
+          button.addEventListener("click", removeCartItem);
+        });
+
+        updateTotalPrice();
+      }
+
+      // Function to remove item from cart
+      function removeCartItem(event) {
+        const index = event.target.getAttribute("data-index");
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCartItems();
+      }
+
+      // Function to update total price and calculate points
+      function updateTotalPrice() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalMRP = cart.reduce(
+          (sum, item) => sum + parseFloat(item.price.replace(/,/g, "")),
+          0
+        );
+        const discount = totalMRP * 0.05; // Assuming 5% discount
+        const totalAmount = totalMRP - discount + 49; // Adding delivery fee
+        const pointsEarned = Math.floor(totalAmount / 100); // 1 point for every 100 rupees
+
+        document.getElementById("total-mrp").textContent = totalMRP.toFixed(2);
+        document.getElementById("discount").textContent = discount.toFixed(2);
+        document.getElementById("total-amount").textContent =
+          totalAmount.toFixed(2);
+        document.getElementById("total-savings").textContent =
+          discount.toFixed(2);
+        document.getElementById("points-earned").textContent = pointsEarned;
+      }
+
+      // Function to handle checkout
+      function handleCheckout() {
+        const totalAmount = parseFloat(
+          document.getElementById("total-amount").textContent
+        );
+        const pointsEarned = Math.floor(totalAmount / 100);
+
+        // Get current rewards from localStorage
+        let currentRewards = parseInt(
+          localStorage.getItem("rewardPoints") || "0"
+        );
+
+        // Add new points
+        currentRewards += pointsEarned;
+
+        // Save updated rewards to localStorage
+        localStorage.setItem("rewardPoints", currentRewards.toString());
+
+        // Clear the cart
+        localStorage.removeItem("cart");
+
+        // Redirect to the rewards page
+        window.location.href = "rewards.php";
+      }
+
+      // Add event listener to checkout button
+      document
+        .getElementById("checkout-btn")
+        .addEventListener("click", handleCheckout);
+
+      // Call the function on page load
+      window.onload = function () {
+        displayCartItems();
+        updateTotalPrice();
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fudge Rewards Program</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        background-color: #ff6b4a;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        animation: pulse 4s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      h1 {
+        margin: 0;
+        font-size: 2.5em;
+        position: relative;
+      }
+      .rewards-info {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .member-info,
+      .points-info {
+        flex: 1;
+      }
+      .points-circle {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #ff6b4a, #ff8c6a);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        margin: 0 auto;
+        box-shadow: 0 10px 20px rgba(255, 107, 74, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .points-circle:hover {
+        transform: scale(1.05);
+      }
+      .points-number {
+        font-size: 3em;
+        font-weight: bold;
+      }
+      .tier-progress {
+        width: 80%;
+        height: 10px;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+      .tier-progress-bar {
+        height: 100%;
+        background-color: #ff6b4a;
+        width: 0;
+        transition: width 1s ease-in-out;
+      }
+      .benefits {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .benefit-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+      .benefit-item:hover {
+        transform: translateX(10px);
+      }
+      .benefit-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b4a, #ff8c6a);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        box-shadow: 0 5px 15px rgba(255, 107, 74, 0.3);
+      }
+      .benefit-icon img {
+        width: 35px;
+        height: 35px;
+      }
+      .how-it-works {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .steps {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      .step {
+        flex: 1;
+        padding: 20px;
+        background-color: white;
+        border-radius: 15px;
+        margin: 0 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+      .step-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #ff6b4a;
+      }
+      .rewards-tiers {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .tier {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+      }
+      .tier:hover {
+        background-color: #fff5f2;
+      }
+      .tier-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+      }
+      .tier-info {
+        flex-grow: 1;
+      }
+      .tier-name {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+      }
+      .tier-benefits {
+        font-size: 0.9em;
+        color: #666;
+      }
+      .recent-activity {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .activity-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #ff6b4a;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+      }
+      .activity-icon img {
+        width: 20px;
+        height: 20px;
+      }
+      .activity-details {
+        flex-grow: 1;
+      }
+      .activity-date {
+        font-size: 0.8em;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Fudge Rewards Program</h1>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="rewards-info">
+        <div class="member-info">
+          <h2>Member Information</h2>
+          <p><strong>Email:</strong> <span id="member-email"></span></p>
+          <p><strong>Address:</strong> <span id="member-address"></span></p>
+          <p><strong>Visits:</strong> <span id="member-visits"></span></p>
+        </div>
+        <div class="points-info">
+          <div class="points-circle">
+            <div class="points-number" id="reward-points">0</div>
+            <div>POINTS</div>
+          </div>
+          <div class="tier-progress">
+            <div class="tier-progress-bar" id="tier-progress"></div>
+          </div>
+          <p>Silver Tier - 250 points to Gold</p>
+        </div>
+      </div>
+
+      <div class="rewards-tiers">
+        <h2>Rewards Tiers</h2>
+        <div class="tier">
+          <img
+            src="https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-third-place-bronze-medal-for-sport-podium-winner-png-image_2050412.jpg"
+            alt="Bronze tier"
+            class="tier-icon"
+          />
+          <div class="tier-info">
+            <div class="tier-name">Bronze</div>
+            <div class="tier-benefits">5% discount on all purchases</div>
+          </div>
+        </div>
+        <div class="tier">
+          <img
+            src="https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-second-place-silver-medal-for-sport-podium-winner-png-image_2050419.jpg"
+            alt="Silver tier"
+            class="tier-icon"
+          />
+          <div class="tier-info">
+            <div class="tier-name">Silver</div>
+            <div class="tier-benefits">
+              10% discount on all purchases, free shipping
+            </div>
+          </div>
+        </div>
+        <div class="tier">
+          <img
+            src="https://img.icons8.com/color/48/000000/gold-medal.png"
+            alt="Gold tier"
+            class="tier-icon"
+          />
+          <div class="tier-info">
+            <div class="tier-name">Gold</div>
+            <div class="tier-benefits">
+              15% discount on all purchases, free shipping, exclusive products
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <h2>Your Rewards Benefits</h2>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/discount--v1.png"
+              alt="Discount icon"
+            />
+          </div>
+          <div>
+            <h3>Exclusive Discounts</h3>
+            <p>Get special discounts on selected items every month.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/gift--v1.png"
+              alt="Gift icon"
+            />
+          </div>
+          <div>
+            <h3>Birthday Treats</h3>
+            <p>Receive a special gift on your birthday!</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <img
+              src="assets\images\image.png"
+              alt="Fast cart icon"
+            />
+          </div>
+          <div>
+            <h3>Early Access</h3>
+            <p>Shop new collections before anyone else.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="recent-activity">
+        <h2>Recent Activity</h2>
+        <div class="activity-item">
+          <div class="activity-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/shopping-bag.png"
+              alt="Purchase icon"
+            />
+          </div>
+          <div class="activity-details">
+            <div>Earned 50 points from purchase</div>
+            <div class="activity-date">May 15, 2023</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/gift.png"
+              alt="Redeem icon"
+            />
+          </div>
+          <div class="activity-details">
+            <div>Redeemed 100 points for discount</div>
+            <div class="activity-date">May 10, 2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Shop</h3>
+            <p>Make purchases at Fudge</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Earn</h3>
+            <p>Get 1 point for every ₹100 spent</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Redeem</h3>
+            <p>Use your points for discounts and perks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simulated member data (replace with actual data fetching logic)
+      const memberData = {
+        email: "pet.lover@example.com",
+        address: {
+          line1: "123 Paw Street",
+          line2: "Apt 4B",
+          city: "Furville",
+          state: "Pet State",
+          zip: "12345",
+        },
+        visits: 15,
+      };
+
+      // Get rewards from localStorage
+      const rewards = parseInt(localStorage.getItem("rewardPoints") || "0");
+
+      // Populate member information
+      document.getElementById("member-email").textContent = memberData.email;
+      document.getElementById(
+        "member-address"
+      ).textContent = `${memberData.address.line1}, ${memberData.address.line2}, ${memberData.address.city}, ${memberData.address.state} ${memberData.address.zip}`;
+      document.getElementById("member-visits").textContent = memberData.visits;
+      document.getElementById("reward-points").textContent = rewards;
+
+      // Animation for points
+      function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          obj.innerHTML = Math.floor(progress * (end - start) + start);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+
+      const rewardPoints = document.getElementById("reward-points");
+      animateValue(rewardPoints, 0, rewards, 2000);
+
+      // Animate tier progress bar
+      const tierProgressBar = document.getElementById("tier-progress");
+      const progressPercentage = ((rewards % 250) / 250) * 100;
+      setTimeout(() => {
+        tierProgressBar.style.width = `${progressPercentage}%`;
+      }, 500);
+    </script>
+  </body>
+</html>
